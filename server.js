@@ -220,9 +220,9 @@ app.post('/search', function(req, res){
         const db = client.db(dbName);
     
     var searchID={};
-    searchID['DeviceID'] = req.body.deviceID;
+    searchID['device_id'] = req.body.device_id;
     
-    if (searchID.restaurantID){
+    if (searchID.device_id){
     console.log("...Searching the document");
     findDocument(db, searchID, function(docs){
             client.close();
@@ -257,13 +257,14 @@ app.post('/create', function(req, res){
         const db = client.db(dbName);
         
         documents["_id"] = ObjectID;
-        documents["deviceID"] = req.body.deviceID;	        	
-	documents['name']= req.body.name;
-	documents['type']= req.body.type;
-	documents['price']= req.body.number;
+        documents["device_id"] = req.body.device_id;	        	
+	    documents['name']= req.body.name;
+	    documents['type']= req.body.type;
+	    documents['price']= req.body.number;
         documents['colour']= req.body.colour;
+        documents['brand']=req.body.brand;
         
-        if(documents.deviceID){
+        if(documents.device_id){
             console.log("...Creating the document");
             createDocument(db, documents, function(docs){
                 client.close();
@@ -297,7 +298,7 @@ app.post('/update', function(req, res){
  
 
         	let updateDoc = {};
-                updateDoc['deviceID'] = req.body.postId;
+                updateDoc['device_id'] = req.body.postId;
                 console.log(updateDoc);
 
                 updateDocument(updateDoc, updatedocument, function(docs) {
@@ -325,8 +326,8 @@ app.get('/delete', function(req, res){
 
 //Restful
 //insert
-app.post('/api/item/deviceID/:deviceID', function(req,res) {
-    if (req.params.restaurantID) {
+app.post('/api/item/device_id/:device_id', function(req,res) {
+    if (req.params.device_id) {
         console.log(req.body)
         const client = new MongoClient(mongourl);
         client.connect(function(err){
@@ -345,13 +346,13 @@ app.post('/api/item/deviceID/:deviceID', function(req,res) {
                 })
             }
         else {
-        res.status(500).json({"error": "missing restaurant ID"});
+        res.status(500).json({"error": "missing device ID"});
     }
 })
 
 //find
-app.get('/api/item/deviceID/:deviceID', function(req,res) {
-    if (req.params.restaurantID) {
+app.get('/api/item/device_id/:device_id', function(req,res) {
+    if (req.params.device_id) {
         let criteria = {};
         criteria['deviceID'] = req.params.deviceID;
         const client = new MongoClient(mongourl);
@@ -372,10 +373,10 @@ app.get('/api/item/deviceID/:deviceID', function(req,res) {
 })
 
 //delete
-app.delete('/api/item/deviceID/:deviceID', function(req,res){
-    if (req.params.restaurantID) {
+app.delete('/api/item/device_id/:device_id', function(req,res){
+    if (req.params.device_id) {
         let criteria = {};
-        criteria['deviceID'] = req.params.deviceID;
+        criteria['device_id'] = req.params.device_id;
         const client = new MongoClient(mongourl);
         client.connect(function(err){
             assert.equal(null, err);

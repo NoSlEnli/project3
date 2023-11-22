@@ -4,7 +4,7 @@
     "author": "13281513, 13440485, 13335950",
     "version": "0.0.1",
     "engines": {
-        "node": "^18.2.0"
+        "node": "^14.15.1"
     },
     "dependencies": {
         "cookie-session": "latest",
