@@ -1,0 +1,22 @@
+{
+    "name": "server",
+    "description": "Group48 project",
+    "author": "13281513, 13440485, 13335950",
+    "version": "0.0.1",
+    "engines": {
+        "node": "^18.2.0"
+    },
+    "dependencies": {
+        "cookie-session": "latest",
+        "body-parser": "^1.18.3",
+        "ejs": "*",
+        "express": "*",
+        "mongodb": "*",
+        "assert": "^1.4.1"
+        
+    },
+    "engine": "node >= 12.0.0",
+    "scripts": {
+        "start": "node server.js"
+    }
+}
